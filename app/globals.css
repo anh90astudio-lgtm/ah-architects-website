@@ -75,3 +75,34 @@
  .editorial-facts{padding-left:8px}
  .editorial-facts dt,.editorial-facts dd{font-size:9px}
 }
+
+/* v0.16 — ONLY Project Detail's circled header/hero/title region.
+   White wordmark bar directly above image, Alexander & Co. reference rhythm.
+   All editorial content, credits, gallery and other pages remain unchanged. */
+.ah-header--detail{
+  background:#fff;
+  color:#111;
+  height:76px;
+  min-height:76px;
+  padding-top:19px;
+  box-shadow:none;
+}
+.ah-header--detail .ah-wordmark{color:#111;text-shadow:none}
+.ah-header--detail .ah-hamburger{color:#111}
+.editorial-hero{padding-top:76px}
+.editorial-intro-grid{padding-top:17px}
+.editorial-title h1{margin-bottom:5px}
+@media(max-width:700px){
+  .ah-header--detail{
+    height:61px;
+    min-height:61px;
+    padding:14px 12px 0;
+  }
+  .ah-header--detail .ah-wordmark{font-size:clamp(19px,4.2vw,25px)}
+  .ah-header--detail .ah-hamburger{top:19px;right:5vw}
+  .ah-header--detail .ah-nav--open{top:60px}
+  .editorial-hero{padding-top:61px}
+  .editorial-intro-grid{padding-top:16px}
+  .editorial-title{margin-bottom:25px}
+  .editorial-title h1{margin-bottom:3px}
+}

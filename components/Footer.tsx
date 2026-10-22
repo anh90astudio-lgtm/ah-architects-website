@@ -1,0 +1,1 @@
+export default function Footer(){return <footer className="site-footer"><span>© {new Date().getFullYear()} A+H Architects</span><span>Quy Nhon · Vietnam</span><span>Architecture & Interior Design</span></footer>}

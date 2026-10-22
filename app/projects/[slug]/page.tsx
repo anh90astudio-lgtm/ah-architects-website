@@ -10,7 +10,7 @@ export default async function ProjectPage({params}:{params:Promise<{slug:string}
   <div className="editorial-hero"><img src={p.images[0]} alt={`${p.title} — placeholder hero photograph`}/></div>
   <div className="editorial-intro-grid">
    <div className="editorial-primary">
-    <div className="editorial-title"><h1>{p.title}</h1><p>{p.category.toUpperCase()} <span>|</span> {p.location.toUpperCase()} <span>|</span> {p.year}</p></div>
+    <div className="editorial-title"><h1>{p.title.toLocaleLowerCase('en-US').replace(/(^|[\s’\-])([a-z])/g, (_m, prefix, letter) => prefix + letter.toUpperCase())}</h1><p>{p.category.split('/')[0].trim().toUpperCase()}</p></div>
     <p className="editorial-lead">{p.description}</p>
     <p className="editorial-body">Located in {p.location}, {p.title} is an exploration of the relationship between people, place and the everyday experience of architecture. The project considers natural light, spatial connections and the expressive potential of materials.</p>
     <figure className="editorial-feature-image"><img src={p.images[1]??p.images[0]} alt={`${p.title} — project image`} loading="lazy"/></figure>

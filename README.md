@@ -1,24 +1,21 @@
-# A+H Architects v0.14 — reference-aligned editorial layout
+# A+H Architects v0.15 — Reference-locked mobile layout
 
-Next.js source for A+H Architects. Based on the three-panel visual reference supplied by the studio.
+Next.js website. Three supplied mobile visual references are the layout specification:
 
-## Deploy updated version using GitHub and Vercel
+1. Home: nearly edge-to-edge vertical photo, small centered serif wordmark, navigation underneath, minimal bottom slider controls, 3-second automatic rotation, no project captions.
+2. Projects: one landscape image per row (approx. 2.38:1), narrow page gutters, small serif title and uppercase location/year immediately below, tight vertical rhythm.
+3. Detail: wide image hero (approx. 1.83:1), centered wordmark plus right hamburger, compact title and metadata, editorial lead/body on left, credits sidebar on right even on phones, quote with adjacent image.
 
-1. Unzip the archive and open `ah-architects-v014`.
-2. Upload the **contents** of that folder to the existing GitHub repository root (do not upload the folder itself). Overwrite changed files and commit. Using Git CLI is easiest for replacing multiple files.
-3. Vercel should automatically deploy the new commit. Check deployment status and production URL.
+## Deploy
 
-## Local development
+Upload **contents** of this directory into the root of the existing GitHub repository, replacing corresponding files. Keep `package.json` at repository root. Vercel deploys the main branch automatically.
 
-```bash
+## Local test
+
+```sh
 npm install
-npm run dev
 npm run build
+npm run dev
 ```
 
-## Important
-
-- The Unsplash photographs are placeholders and are **not** verified A+H project photography. Replace them in `lib/projects.ts` with real project images.
-- Project descriptions, credits, dates and collaborators require editorial review before public launch.
-- Hero and project layout are responsive interpretations of the supplied reference; precise appearance varies with screen dimensions.
-- Site is not a CMS. Content is currently edited in `lib/projects.ts`.
+Images and some project facts are placeholders. Replace with studio-approved photography and verified metadata before publishing as an official portfolio.

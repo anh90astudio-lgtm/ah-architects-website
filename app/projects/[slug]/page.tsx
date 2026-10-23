@@ -8,9 +8,16 @@ export default async function ProjectPage({params}:{params:Promise<{slug:string}
  const index=projects.findIndex(x=>x.slug===slug); const next=projects[(index+1)%projects.length];
  return <article className="editorial-project">
   <div className="editorial-hero"><img src={p.images[0]} alt={`${p.title} — placeholder hero photograph`}/></div>
+  <div className="editorial-title editorial-title--standalone"><h1>{p.title.toLocaleLowerCase('en-US').replace(/(^|[\s’\-])([a-z])/g, (_m, prefix, letter) => prefix + letter.toUpperCase())}</h1><p>{p.category.split('/')[0].trim().toUpperCase()}</p></div>
+  <section className="editorial-mobile-facts" aria-label="Project information"><dl>
+   <div><dt>LOCATION</dt><dd>{p.location}</dd></div>
+   <div><dt>LAND</dt><dd>—</dd></div>
+   <div><dt>TYPE</dt><dd>{p.category.split('/')[0].trim()}</dd></div>
+   <div><dt>COMPLETION</dt><dd>{p.year}</dd></div>
+   <div><dt>SIZE</dt><dd>{p.area}</dd></div>
+  </dl></section>
   <div className="editorial-intro-grid">
    <div className="editorial-primary">
-    <div className="editorial-title"><h1>{p.title.toLocaleLowerCase('en-US').replace(/(^|[\s’\-])([a-z])/g, (_m, prefix, letter) => prefix + letter.toUpperCase())}</h1><p>{p.category.split('/')[0].trim().toUpperCase()}</p></div>
     <p className="editorial-lead">{p.description}</p>
     <p className="editorial-body">Located in {p.location}, {p.title} is an exploration of the relationship between people, place and the everyday experience of architecture. The project considers natural light, spatial connections and the expressive potential of materials.</p>
     <figure className="editorial-feature-image"><img src={p.images[1]??p.images[0]} alt={`${p.title} — project image`} loading="lazy"/></figure>

@@ -1,13 +1,10 @@
 'use client';
-import {useEffect,useState} from 'react';
-import Link from 'next/link';
-import type {Project} from '../lib/projects';
+import {useEffect,useState} from 'react';import Link from 'next/link';import type {Project} from '../lib/projects';
 export default function HomeSlider({projects}:{projects:Project[]}){
- const [active,setActive]=useState(0);
- useEffect(()=>{if(projects.length<2)return;const id=window.setInterval(()=>setActive(i=>(i+1)%projects.length),3000);return()=>window.clearInterval(id)},[projects.length]);
- const go=(direction:number)=>setActive(i=>(i+direction+projects.length)%projects.length);
- return <section className="ah-home-carousel" aria-label="Featured projects" aria-roledescription="carousel">
-  <div className="ah-slides">{projects.map((project,i)=><Link href={`/projects/${project.slug}`} key={project.slug} className={`ah-slide ${i===active?'is-active':''}`} aria-label={`View ${project.title}`} aria-hidden={i!==active} tabIndex={i===active?0:-1}><img src={project.cover} alt={`Placeholder image for ${project.title}`} loading={i<2?'eager':'lazy'}/></Link>)}</div>
-  <div className="ah-slider-controls" aria-label="Slideshow controls"><button onClick={()=>go(-1)} aria-label="Previous slide">←</button><div className="ah-slider-dots">{projects.map((p,i)=><button key={p.slug} onClick={()=>setActive(i)} className={i===active?'active':''} aria-label={`Show slide ${i+1}`} aria-current={i===active?'true':undefined}/>)}</div><button onClick={()=>go(1)} aria-label="Next slide">→</button></div>
- </section>
+ const [active,setActive]=useState(0);useEffect(()=>{const id=window.setInterval(()=>setActive(i=>(i+1)%projects.length),6500);return()=>clearInterval(id)},[projects.length]);
+ const go=(d:number)=>setActive(i=>(i+d+projects.length)%projects.length);
+ return <main className="home-stage"><div className="home-photo-frame">{projects.map((p,i)=><Link key={p.slug} href={`/projects/${p.slug}`} className={`home-photo ${i===active?'visible':''}`} aria-hidden={i!==active} tabIndex={i===active?0:-1}><img src={p.cover} alt={p.title}/></Link>)}
+ <div className="home-caption"><h1>Architecture<br/>for a Life in Place</h1><p>We create places rooted in context, material and everyday life, where architecture, people and nature live in balance.</p><Link href="/projects">View projects <span>→</span></Link></div>
+ <div className="home-counter">{String(active+1).padStart(2,'0')} <span/> {String(projects.length).padStart(2,'0')}</div>
+ <div className="home-bottom"><div className="home-progress">{projects.map((p,i)=><button aria-label={`Go to slide ${i+1}`} key={p.slug} className={i===active?'selected':''} onClick={()=>setActive(i)}/>)}</div><div className="home-arrows"><button onClick={()=>go(-1)} aria-label="Previous">←</button><button onClick={()=>go(1)} aria-label="Next">→</button></div></div></div></main>
 }

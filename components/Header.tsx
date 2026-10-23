@@ -3,13 +3,12 @@ import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useEffect,useState} from 'react';
 export default function Header(){
- const path=usePathname(); const [open,setOpen]=useState(false);
- const detail=path.startsWith('/projects/');
- useEffect(()=>setOpen(false),[path]);
- const links=[['/projects','Projects'],['/practice','Practice'],['/studio','About us']];
- return <header className={`ah-header ${detail?'ah-header--detail':''} ${path==='/'?'ah-header--home':''}`}>
-  <Link href="/" className="ah-wordmark" aria-label="A+H Architects home">A+H ARCHITECTS</Link>
-  {detail?<button type="button" className="ah-hamburger" aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} aria-controls="ah-nav" onClick={()=>setOpen(!open)}><span/><span/><span/></button>:null}
-  <nav id="ah-nav" className={`ah-nav ${detail?(open?'ah-nav--open':'ah-nav--hidden'):''}`} aria-label="Main navigation">{links.map(([href,label])=><Link href={href} key={href} className={path===href?'active':''} onClick={()=>setOpen(false)}>{label}</Link>)}</nav>
+ const path=usePathname();const [open,setOpen]=useState(false);useEffect(()=>setOpen(false),[path]);
+ const links=[['/projects','Projects'],['/practice','Practice'],['/about','About us']];
+ return <header className={`site-header ${path==='/'?'on-home':''}`}>
+ <Link className="site-logo" href="/">A+H ARCHITECTS</Link>
+ {path==='/'&&<nav className="home-top-nav" aria-label="Primary navigation">{links.map(([href,label])=><Link href={href} key={href}>{label}</Link>)}</nav>}
+ <button className="site-menu-button" aria-label={open?'Close menu':'Open menu'} aria-expanded={open} onClick={()=>setOpen(!open)}><span/><span/><span/></button>
+ {open&&<nav className="site-menu" aria-label="Site navigation">{links.map(([href,label])=><Link href={href} key={href} onClick={()=>setOpen(false)}>{label}</Link>)}</nav>}
  </header>
 }
